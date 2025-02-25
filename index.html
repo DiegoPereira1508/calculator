@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Completa</title>
+    <title>Calculadora Avançada</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="calculadora">
         <!-- Visor -->
-        <input type="text" id="display" disabled>
+        <div class="visor">
+            <div id="historico"></div>
+            <input type="text" id="display" disabled>
+        </div>
 
         <!-- Teclas -->
         <div class="botoes">
+            <button onclick="limparTudo()">AC</button>
             <button onclick="limparDisplay()">C</button>
             <button onclick="apagarUltimo()">DEL</button>
-            <button onclick="adicionarPorcentagem()">%</button>
             <button onclick="adicionarOperador('/')">/</button>
 
             <button onclick="adicionarNumero('7')">7</button>
@@ -37,6 +40,13 @@
             <button onclick="adicionarNumero('0')">0</button>
             <button onclick="adicionarDecimal()">.</button>
             <button onclick="calcular()">=</button>
+
+            <!-- Novas funcionalidades -->
+            <button onclick="calcularPotencia()">x^y</button>
+            <button onclick="calcularRaizQuadrada()">√</button>
+            <button onclick="calcularFatorial()">!</button>
+            <button onclick="adicionarPi()">π</button>
+            <button onclick="adicionarEuler()">e</button>
         </div>
     </div>
     <script src="script.js"></script>
