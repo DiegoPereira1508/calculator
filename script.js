@@ -68,3 +68,48 @@ function calcular() {
         display.value = 'Erro';
     }
 }
+
+// Suporte ao teclado
+document.addEventListener('keydown', function (event) {
+    const tecla = event.key;
+
+    // Teclas numéricas (0-9)
+    if (/[0-9]/.test(tecla)) {
+        adicionarNumero(tecla);
+    }
+
+    // Operadores (+, -, *, /)
+    else if (['+', '-', '*', '/'].includes(tecla)) {
+        adicionarOperador(tecla);
+    }
+
+    // Tecla Enter ou = (calcular)
+    else if (tecla === 'Enter' || tecla === '=') {
+        calcular();
+    }
+
+    // Tecla Backspace (apagar último caractere)
+    else if (tecla === 'Backspace') {
+        apagarUltimo();
+    }
+
+    // Tecla Escape (limpar visor)
+    else if (tecla === 'Escape') {
+        limparDisplay();
+    }
+
+    // Tecla . (ponto decimal)
+    else if (tecla === '.') {
+        adicionarDecimal();
+    }
+
+    // Tecla % (porcentagem)
+    else if (tecla === '%') {
+        adicionarPorcentagem();
+    }
+
+    // Tecla +/- (inverter sinal)
+    else if (tecla === '_' || tecla === '±') {
+        inverterSinal();
+    }
+});
