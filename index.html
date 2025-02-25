@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Completa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculadora">
+        <!-- Visor -->
+        <input type="text" id="display" disabled>
+
+        <!-- Teclas -->
+        <div class="botoes">
+            <button onclick="limparDisplay()">C</button>
+            <button onclick="apagarUltimo()">DEL</button>
+            <button onclick="adicionarPorcentagem()">%</button>
+            <button onclick="adicionarOperador('/')">/</button>
+
+            <button onclick="adicionarNumero('7')">7</button>
+            <button onclick="adicionarNumero('8')">8</button>
+            <button onclick="adicionarNumero('9')">9</button>
+            <button onclick="adicionarOperador('*')">*</button>
+
+            <button onclick="adicionarNumero('4')">4</button>
+            <button onclick="adicionarNumero('5')">5</button>
+            <button onclick="adicionarNumero('6')">6</button>
+            <button onclick="adicionarOperador('-')">-</button>
+
+            <button onclick="adicionarNumero('1')">1</button>
+            <button onclick="adicionarNumero('2')">2</button>
+            <button onclick="adicionarNumero('3')">3</button>
+            <button onclick="adicionarOperador('+')">+</button>
+
+            <button onclick="inverterSinal()">+/-</button>
+            <button onclick="adicionarNumero('0')">0</button>
+            <button onclick="adicionarDecimal()">.</button>
+            <button onclick="calcular()">=</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
