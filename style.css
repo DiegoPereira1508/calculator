@@ -18,11 +18,21 @@ body {
 }
 
 /* Visor */
+.visor {
+    margin-bottom: 10px;
+}
+
+#historico {
+    font-size: 18px;
+    color: #666;
+    text-align: right;
+    min-height: 25px;
+}
+
 input[type="text"] {
     width: 100%;
     padding: 15px;
     font-size: 24px;
-    margin-bottom: 10px;
     text-align: right;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -31,13 +41,12 @@ input[type="text"] {
 
 /* Teclas */
 .botoes {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
 button {
-    flex: 1 1 calc(25% - 10px);
     padding: 20px;
     font-size: 18px;
     border: none;
@@ -53,9 +62,10 @@ button:hover {
 }
 
 /* Botões especiais */
-button:nth-last-child(1),
-button:nth-last-child(2),
-button:nth-last-child(3),
-button:nth-last-child(4) {
-    flex: 1 1 calc(25% - 10px);
+button:nth-last-child(-n+5) {
+    background-color: #28a745; /* Verde para botões de funções avançadas */
+}
+
+button:nth-last-child(-n+5):hover {
+    background-color: #218838;
 }
