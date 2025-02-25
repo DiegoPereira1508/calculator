@@ -1,4 +1,5 @@
 let display = document.getElementById('display');
+let historico = document.getElementById('historico');
 
 // Adiciona números ao visor
 function adicionarNumero(numero) {
@@ -16,7 +17,13 @@ function adicionarOperador(operador) {
     }
 }
 
-// Limpa o visor
+// Limpa o visor e o histórico
+function limparTudo() {
+    display.value = '0';
+    historico.textContent = '';
+}
+
+// Limpa apenas o visor
 function limparDisplay() {
     display.value = '0';
 }
@@ -31,14 +38,10 @@ function apagarUltimo() {
     }
 }
 
-// Adiciona porcentagem
-function adicionarPorcentagem() {
-    if (display.value !== 'Erro') {
-        try {
-            display.value = eval(display.value) / 100;
-        } catch (e) {
-            display.value = 'Erro';
-        }
+// Adiciona ponto decimal
+function adicionarDecimal() {
+    if (display.value !== 'Erro' && !display.value.includes('.')) {
+        display.value += '.';
     }
 }
 
@@ -53,19 +56,70 @@ function inverterSinal() {
     }
 }
 
-// Adiciona ponto decimal
-function adicionarDecimal() {
-    if (display.value !== 'Erro' && !display.value.includes('.')) {
-        display.value += '.';
-    }
-}
-
 // Calcula o resultado
 function calcular() {
     try {
-        display.value = eval(display.value);
+        const expressao = display.value;
+        const resultado = eval(expressao);
+        historico.textContent = expressao + ' =';
+        display.value = resultado;
     } catch (e) {
         display.value = 'Erro';
+    }
+}
+
+// Potência (x^y)
+function calcularPotencia() {
+    if (display.value !== 'Erro') {
+        display.value += '**';
+    }
+}
+
+// Raiz quadrada (√)
+function calcularRaizQuadrada() {
+    if (display.value !== 'Erro') {
+        const valor = parseFloat(display.value);
+        if (valor >= 0) {
+            historico.textContent = '√(' + valor + ') =';
+            display.value = Math.sqrt(valor);
+        } else {
+            display.value = 'Erro';
+        }
+    }
+}
+
+// Fatorial (!)
+function calcularFatorial() {
+    if (display.value !== 'Erro') {
+        const valor = parseInt(display.value);
+        if (valor >= 0) {
+            let fatorial = 1;
+            for (let i = 2; i <= valor; i++) {
+                fatorial *= i;
+            }
+            historico.textContent = valor + '! =';
+            display.value = fatorial;
+        } else {
+            display.value = 'Erro';
+        }
+    }
+}
+
+// Adiciona π (pi)
+function adicionarPi() {
+    if (display.value === '0' || display.value === 'Erro') {
+        display.value = Math.PI;
+    } else {
+        display.value += Math.PI;
+    }
+}
+
+// Adiciona e (constante de Euler)
+function adicionarEuler() {
+    if (display.value === '0' || display.value === 'Erro') {
+        display.value = Math.E;
+    } else {
+        display.value += Math.E;
     }
 }
 
@@ -103,13 +157,28 @@ document.addEventListener('keydown', function (event) {
         adicionarDecimal();
     }
 
-    // Tecla % (porcentagem)
-    else if (tecla === '%') {
-        adicionarPorcentagem();
+    // Tecla ^ (potência)
+    else if (tecla === '^') {
+        calcularPotencia();
     }
 
-    // Tecla +/- (inverter sinal)
-    else if (tecla === '_' || tecla === '±') {
-        inverterSinal();
+    // Tecla r (raiz quadrada)
+    else if (tecla === 'r') {
+        calcularRaizQuadrada();
+    }
+
+    // Tecla ! (fatorial)
+    else if (tecla === '!') {
+        calcularFatorial();
+    }
+
+    // Tecla p (pi)
+    else if (tecla === 'p') {
+        adicionarPi();
+    }
+
+    // Tecla e (constante de Euler)
+    else if (tecla === 'e') {
+        adicionarEuler();
     }
 });
